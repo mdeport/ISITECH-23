@@ -168,7 +168,6 @@ les relations sont lien avec les entité par des verbes.
 
 Petit exemple :
 
-image 11 a 13
 ![Alt texte](image-11.png)
 ![Alt texte](image-12.png)
 ![Alt texte](image-13.png)
