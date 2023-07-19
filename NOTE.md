@@ -350,6 +350,51 @@ CREATE TABLE Ventes
 
 ```
 
+### Exercice 2 :
+
+Image MCD :
+![Alt texte](image-MCD-Exos2.png)
+
+Image MLD :
+
+![Alt texte](image-MLD-Exos2.png)
+
+```sql
+CREATE TABLE Propriétaires
+(
+    id_propriétaire INTEGER PRIMARY KEY,
+    Nom_propriétaire VARCHAR(20) NOT NULL,
+    Prénom_propriétaire VARCHAR(20) NOT NULL,
+    Téléphone_propriétaire VARCHAR(20) NOT NULL,
+    id_maison INTEGER NOT NULL,
+    FOREIGN KEY (id_maison) REFERENCES Maisons(id_maison)
+);
+
+```
+```sql
+CREATE TABLE Locataires
+(
+    id_locataire INTEGER PRIMARY KEY,
+    Nom_locataire VARCHAR(20) NOT NULL,
+    Prénom_locataire VARCHAR(20) NOT NULL,
+    Téléphone_locataire VARCHAR(20) NOT NULL,
+    id_maison INTEGER NOT NULL,
+    FOREIGN KEY (id_maison) REFERENCES Maisons(id_maison)
+);
+
+```
+```sql
+CREATE TABLE Maisons
+(
+    id_maison INTEGER PRIMARY KEY,
+    Adresse_maison VARCHAR(20) NOT NULL,
+    Code_postal_maison VARCHAR(20) NOT NULL,
+    Prix_maison FLOAT NOT NULL,
+);
+
+```
+
+
 
 
 
