@@ -24,6 +24,11 @@ pour sauvegarder le travail commande :
 git commit -m "votre message de commit"
 ```
 
+Pour recuperer les sauvegarde d'un depot git la commande :
+``` bash
+git pull
+```
+
 ## 2. MERISE
 
 Merise est une methde de modélisation de données. elle permet de représenter les données d'un systeme d'information.
@@ -153,13 +158,54 @@ Ici on va introduire les notions d'entité, de relation et de propriétés.
 
 Les rpopriétés sont les informations de bases d'un SI.
 
-Les entités sont les objets du SI. 
+### Lesentités sont les objets du SI. 
 ![Alt texte](image-8.png)
+
+Quelque definitions :
+    - ebntite forte: une entite qui ne depend pas d'une autre entité pour exister
+    - entité faible: une entité qui depend d'une autre entité pour exister
+
+
+Le role d'une dépendance focntionelle est de permettre de définir une relation de dependance entre deux attributs d'une table: une données A dépends fonctionnellement d'une données B lorsque la valeur de B Détermine la valeur A
+
+Pour formaliser une dépendance fonctionnelle, on utilise la notation suivante :
+ `Numero adhérent(nom, prenom, code postal, ville téléphone, dare d'adhésion, mail)`
+ La partue gauche (numero adherent) est la `source` de la dependance fonctionnelle et
+ la partie droite est le `but` de la dependance fonctionnelle.
+
+#### 4.0.1 Les dependances fonctionnelles composées
+
+Si une dependance fonctionnelle qui fait intervenir plusieurs attributs, on parle de dependance fonctionnelle composée.
+
+Exemple: Pour connaitre le temps coureur sur un etape donnée il nous faut son numéro ou  son nom et le numéro de l'etape ainsi que le nom ou le numero de l'etape.
+
+Formalisation : 
+`(numero coureur, numero etape)`
+
+#### 4.0.2 Les dependances fonctionnelles elementaires
+
+Une dependances foncitonelle A -> B est elementaire s'il n'existe pas 
+Une données C, sous - ensemble de A, décrivant une dependance fonctionnelle type C -> B.
+
+Exemple :
+- RefProduit -> LibelleProduit
+- NumCommande RefProduit -> QuantiteCommandée
+- <strike>NumCommande RefProduit -> DesignationProduit</strike>
+
+#### 4.0.3 Les dependances fonctionnelle elementaire directe
+"On dit que la dependance fonctionnelle A -> B est directe s'il n'existe aucun attribut C tel que l'on puisse avoir A -> C et C -> B.
+En autre thermes, cela signifie que mla dependance fonctionnelle entre A et B ne peut pas être obtenue par transitivité."
+
+Exemple :
+ - RefPromo -> NumApprenant
+ - NumApprenant -> NomApprenant
+ - RefPromo -> NomApprenant : RefPromo -> NumApprenant -> NomApprenant
 
 ### 4.1 Les relations
 
 les relations sont lien avec les entité par des verbes.
 ![Alt texte](image-9.png)
+
 
 ### 4.2 Les cardinalités
 
@@ -172,9 +218,141 @@ Petit exemple :
 ![Alt texte](image-12.png)
 ![Alt texte](image-13.png)
 
-quelques regles de conception :
+### 4.3 Les relations "porteuses"
+
+Une relation est dites porteuse si elle contient une propriété.
+image 15 et 16
+
+### 4.4 Les relations reflexives 
+
+Une relation est dites reflexive si elle relie une entité a elle même.
+
+image 17
+
+### 4.5 quelques regles de conception :
 
 - toute entite doit avoir un identifiant
 -toutes les propriétés dépendent fonctionnelement de l'identifiant
 - le nom d"une propriété ne doit aparraitre qu'une seule fois dans le MCD : si vous avez une entité eleve et une entité professeur, vous ne pouvez pas avoir une propriété nom dans les deux entités. il faut donc renommer la propriété nom de l'entité professeurProfeseur en NomProfesseur par exemple.
 - les propriété issues d'un calcul ne doivent pas apparaitre dans le MCD.
+
+### 4.6 Les contraintes d'intégrité fonctionnelle (GIF)
+
+Définition : Une CIF est définie par le fait qu'une des entités de l'association est completement déterminée par la connaissance d'une ou de plusieurs entité particpant a l'association
+
+Exemple :
+image 18
+
+une Salle peut contenir 0 ou plusieurs ordinateurs.
+Un ordinateur existe dans une seule et unique salle.
+Dans ce type de relation une CIF existe si on a uen  cardinalité 1,1.
+
+
+## 5. Modele Logique de données (MLD)
+
+Le MLD est l    a suite du processus Merise, on se raproche un peu plus de la base de données.
+
+#### 5.0.1 cas simple
+Partons du MCD suivant :
+![Alt texte](image-19.png)
+
+Nous arrivons au MLD suivant :
+![Alt texte](image-20.png)
+
+L'`entité` qui possède la cardilatité 1,1 ou 0,1 absorbe l'identifiant de l'entite lka plus fortez (0,n ou1,n). Cet identifiant devient alors une clé étrangère.
+
+#### 5.0.2 cas (0,n), (0,n) ou (1,n), (1,n)
+
+Partons du MCD suivant :
+
+![Alt texte](image-21.png)
+
+Dans le cas ou la `cardinalité` est n des deux cotés, on crée une entité intermediaire qui va contenir les deux clés etrangères des deux entités.
+
+![Alt texte](image-22.png)
+
+continuons avec le MCD suivant :
+
+![Alt texte](image-23.png)
+
+On obtient le MLD suivant la même logique :
+
+![Alt texte](image-24.png)
+
+#### 5.0.3 cas d'une relation reflexive
+
+Partons du MCD suivant :
+
+![Alt texte](image-25.png)
+
+![Alt texte](image-26.png)
+
+#### 5.0.4 Rgle de passage d'un MCD au MLD
+
+resumé des partie précédente
+
+
+## Exercice Pratique
+ 
+Pour tous les excercices j'ai utilisé `Docker` avec `Azure Data Studio`.
+### Exercice 1 :
+
+Image MCD :
+![Alt texte](image-MCD-Exos1.png)
+
+Image MLD :
+![Alt texte](image-MLD-Exos1.png)
+
+```sql
+
+CREATE TABLE Legumes
+(
+    id_legume INTEGER PRIMARY KEY,
+    nom_legume VARCHAR(20) NOT NULL,
+    poid_legume FLOAT NOT NULL,
+);
+
+```
+```sql
+
+CREATE TABLE Animaux
+(
+    id_animaux INTEGER PRIMARY KEY,
+    nom_animaux VARCHAR(20) NOT NULL,
+    poid_animaux FLOAT NOT NULL,
+);
+
+```
+```sql
+
+CREATE TABLE Fruits
+(
+    id_fruit INTEGER PRIMARY KEY,
+    nom_fruit VARCHAR(20) NOT NULL,
+    poid_fruit FLOAT NOT NULL,
+);
+
+```
+```sql
+CREATE TABLE Ventes
+(
+    id_client INTEGER PRIMARY KEY,
+    nom_client VARCHAR(20) NOT NULL,
+    prix_vente FLOAT NULL,
+    Quantité FLOAT NULL,
+    id_legume INTEGER,
+    id_animaux INTEGER,
+    id_fruit INTEGER,
+    FOREIGN KEY (id_legume) REFERENCES Legumes(id_legume),
+    FOREIGN KEY (id_animaux) REFERENCES Animaux(id_animaux),
+    FOREIGN KEY (id_fruit) REFERENCES Fruits(id_fruit)
+);
+
+```
+
+
+
+
+
+
+
