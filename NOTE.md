@@ -439,3 +439,53 @@ Exemple :
 Commande(NumCommande, #CodeClient, #RefArticle)
 
 ![Alt text](image-32.png)
+
+## 7. Les diagrammes des flux
+
+les diagrammes de flux permettent de modéliser les flux d'informations entre les acteurs du systeme d'information et les acteurs du systeme operant.
+
+quelque définitions :
+- Domaine d'étude: le périmètre d'une activité au sein d'une entreprise, d'une activité spécifique.
+- L'acteur: une personne, un service, une entreprise, un systeme informatique qui interviennent dans le domaine d'étude. au moyen d'un flux d'information.
+- 
+
+![Alt text](image-35.png)
+
+Quelque règles :
+
+- un flux ne peut pas etre bidirectionnel
+- un flux ne doit pas etre reflexif
+- on ne represente oas ,es flux entre les acteur externes
+
+## UML
+UML: Unified Modeling Language (langage de modélisation unifié)est un langage de modélisation de données. UML a été normalisé en 1997 par l'OMG (Object Management Group). Son but est de mettre en forme les concepts de la programmation orientée objet au travers de diagramme.
+
+UML propose 13 diagrammes independant de façopn hiérarchique et se complétant.
+1. Les diagrammes statiques : ils permemttent de modéliser la stucture d'un systèmes
+
+- diagramme de classe
+- diagramme d'objet
+- diagramme de composant
+- diagramme de déploiement
+- diagramme de paquetage
+- diagramme de structure composite
+
+2. Les diagrammes comportementaux : 
+
+- Diagrammes des cas d'usage
+- diagramme états-transitions
+- diagramme d'activité
+
+3. Les diagrammes dinamiques :
+
+- diagramme de séquence
+- diagramme de communication
+- diagramme global d'interaction
+- diagramme de temps
+
+### 7.1 Analogie Merise / UML
+
+1. cas du MCD et du diagramme des classes 
+
+point commun :
+
