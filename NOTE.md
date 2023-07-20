@@ -350,14 +350,14 @@ CREATE TABLE Ventes
 
 ```
 
-### Exercice 2 :
+### Exercice 4 :
 
 Image MCD :
-![Alt texte](image-MCD-Exos2.png)
+![Alt texte](image-MCD-Exos4.png)
 
 Image MLD :
 
-![Alt texte](image-MLD-Exos2.png)
+![Alt texte](image-MLD-Exos4.png)
 
 ```sql
 CREATE TABLE Propriétaires
@@ -394,10 +394,48 @@ CREATE TABLE Maisons
 
 ```
 
+## 6.Les formes normales (FN)
+
+Ensemble de règles qui a pour but d'éviter les anomalies au sein des BDDDR(Base dedonnées relationnelle).
+Pour appliquer les concepts des formes normales il est nécéssaire de connaitre les trois premières formes normales.
+
+###  6.1 Forme normal 1 (1FN)
+
+Une relation est en première forme normal si :
+- tous les attributs sont atomique
+- les attributs ne contiennent pas de valeurs répétitives
+
+Exemple:
+Clients (NumCli, Nom, Prénom, Adresse, Téléphone)
+
+![Alt text](image-29.png)
+
+![Alt text](image-30.png)
+
+
+### 6.2 Forme normal 2 (2FN)
+
+Une relation est en deuxième forme normale si : 
+
+- elle est en 1FN 
+- Si touds leds attributs qui ne sont pas des clés ne dépendent pas d'une partie de la clé primaire.
+
+Exemple :
+
+Commande(NumClient, CodeArticle, Date, QteCommande, Désignation)
+
+![Alt text](image-31.png)
 
 
 
+### 6.3 Forme normal 3 (3FN)
 
+Une relation est troisième forme normzle si :
+- Elle est en deuxième forme normale
+- Si tooutes les dépendances fonctionnelles sont directes
 
+Exemple : 
 
+Commande(NumCommande, #CodeClient, #RefArticle)
 
+![Alt text](image-32.png)
